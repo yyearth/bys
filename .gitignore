@@ -1,6 +1,9 @@
 .idea/
 __pycache__/
 pack/
+pyinstaller/
+pyinstaller2/
 test2.py
 test3.py
+test4.py
 Driving in Los Angeles Interstate 405.mp4

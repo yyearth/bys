@@ -6,6 +6,9 @@
 
 import numpy as np
 import cv2
+# import sys
+import winsound
+import threading
 
 
 def solveline(pt1, pt2):
@@ -64,6 +67,7 @@ def detectlane(img, drt=None):
 
     if flag:
         h, w, ch = img.shape
+        threading.Thread(target=winsound.Beep, args=(2000, 200)).start()
         cv2.putText(img, 'Danger!', (w // 2, (h - 30) // 2), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 255), 2)
     else:
         h, w, ch = img.shape
@@ -79,9 +83,14 @@ if __name__ == '__main__':
     # show = detectlane(img, (ta, tb))
     # cv2.imshow('img', show)
     # cv2.waitKey()
+    # pat = __file__[:-7]
+    # print(pat)
+    input('-->')
+    # cap = cv2.VideoCapture(r'./capt20180430_093218.avi')
+    # cap = cv2.VideoCapture(pat+'capt20180430_093218.avi')
+    cap = cv2.VideoCapture('capt20180430_093218.avi')
 
-    # cap = cv2.VideoCapture('capt20180430_093218.avi')
-    cap = cv2.VideoCapture('Driving in Los Angeles Interstate 405.mp4')
+    # cap = cv2.VideoCapture('Driving in Los Angeles Interstate 405.mp4')
     ret, frame = cap.read()
     while ret:
         # get a frame
@@ -91,8 +100,8 @@ if __name__ == '__main__':
         key = cv2.waitKey(1)
         if key == 27:
             break
-        elif key == ord('s'):
-            cv2.imwrite('frame4.jpg', save)
+        # elif key == ord('s'):
+        #     cv2.imwrite('frame4.jpg', save)
 
         ret, frame = cap.read()
     cap.release()
